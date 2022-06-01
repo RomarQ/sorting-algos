@@ -12,7 +12,7 @@ func main() {
 func mergeSort(list []int) []int {
 	if length := len(list); length > 1 {
 		middle := length / 2
-		return merge(mergeSort(list[0:middle]), mergeSort(list[middle:length]))
+		return merge(mergeSort(list[:middle]), mergeSort(list[middle:]))
 	}
 
 	return list
