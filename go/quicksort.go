@@ -21,20 +21,21 @@ func main() {
 	copy(aux, list)
 	println("Quicksort (Middle)")
 	fmt.Println(aux)
-	quickSort(aux, 0, len(aux)-1)
+	quickSort(aux)
 	fmt.Println(aux)
 }
 
-func quickSort(list []int, left int, right int) {
-	if left >= 0 && left < right {
-		p := partition(list, left, right)
-		quickSort(list, left, p)
-		quickSort(list, p+1, right)
+func quickSort(list []int) {
+	if len(list) > 1 {
+		p := partition(list)
+		quickSort(list[:p])
+		quickSort(list[p:])
 	}
 }
 
-func partition(list []int, left int, right int) int {
-	pivot := list[(right+left)/2]
+func partition(list []int) int {
+	left, right := 0, len(list)-1
+	pivot := list[len(list)/2]
 
 	for {
 		for list[left] < pivot {
